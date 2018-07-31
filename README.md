@@ -2,6 +2,7 @@ A-Frame Door Component
 =========================
 
 **API**
+
 |Property|Type|Description|Default Value| 
 |---|---|---|---|
 |type|string|animation type: translate/rotate|translate|
