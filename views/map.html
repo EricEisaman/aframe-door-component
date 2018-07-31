@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/feiss/aframe-environment-component/ad57b15d/dist/aframe-environment-component.min.js"></script>
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.12.4/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/lmalave/aframe-speech-command-component/master/examples/build.js"></script>
+    <script src="aframe-door-component.js"></script>
+    <link rel="icon" href="https://cdn.glitch.com/46a82737-5997-41dc-96e6-2074eba7fa69%2Ffavicon.ico?1510580285743" type="image/x-icon" />
+  </head>
+  <body>
+    <a-scene id="scene-1"
+             environment="preset:default">
+      <!-- Player -->
+      <a-entity id="player"
+                camera="userHeight: 0.6"
+                universal-controls
+                position="0 20 0"
+                kinematic-body="radius: 0.8"
+                jump-ability="maxJumps: 1;
+                              distance: 4;">
+      </a-entity>
+      <a-entity 
+          id="ty"
+          position="8 14.41 0"
+          scale="0.9 0.9 0.9"
+          gltf-model="url(https://cdn.glitch.com/4272601b-6b3d-49c1-af07-f8a21ddd5857%2Funtitled.gltf?1513537243743)"
+          animation-mixer="crossFadeDuration:0.2;clip: Idle;">
+      </a-entity>
+      <!-- Map - Made in MagicaVoxel. -->
+      <a-entity rotation="-90 180 0" 
+                scale="0.8 0.8 0.8" 
+                position="0 0 0"
+                ply-model="src: url(https://cdn.glitch.com/46a82737-5997-41dc-96e6-2074eba7fa69%2Feduland_baked.bake.ply?1510355197895);"
+                shadow="cast: true">
+      </a-entity>
+      <!--Map Physics Boxes-->
+      <a-box id="platform"
+             position="0.452 12.96 -0.18"
+             width="35" height="3" depth="30"
+             opacity="0"
+             color="yellow"
+             static-body></a-box>
+      <a-box id="bldg1-1a"
+             position="13.16 19.31 -7.37"
+             width="7" height="10.24" depth="2"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1b"
+             position="5.83 19.26 -7.56"
+             width="3.89" height="10.24" depth="2"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1c"
+             position="4.69 19.26 -10.89"
+             width="1.31" height="10.24" depth="8.85"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1d"
+             position="8.886 19.26 -14.743"
+             width="13.12" height="10.24" depth="0.8"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1e"
+             position="16.5 19.26 -10.89"
+             width="1.31" height="10.24" depth="8.85"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1e1"            
+             position="15.51 19.26 -13.65"
+             width="4" height="10.24" depth="1.86"
+             color="yellow"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-1e2"
+             position="14.81 19.26 -10.4"
+             width="4" height="10.24" depth="1.31"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-above-door"
+             position="8.7 20.51 -7"
+             width="1.74" height="7.28" depth="1.16"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-2"
+             position="10.33 16.8 -8.78"
+             width="12" height="0.98" depth="4.81"
+             color="yellow"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-2b"
+             position="10.33 16.8 -14.07"
+             width="12" height="0.98" depth="2.51"
+             color="yellow"
+             opacity="0"
+             static-body></a-box>
+      <a-box id="bldg1-2c"
+             position="9.11 16.8 -11.5"
+             width="10.31" height="0.98" depth="2.51"
+             color="yellow"
+             opacity="0"
+             static-body></a-box>
+      <a-entity id="annyang" annyang-speech-recognition></a-entity>
+      <!--Doors-->
+      <a-box id="door-1"
+             depth="0.4" height="2.4" width="1.6"
+             color="#334433"
+             position="8.8 15.6 -6.72"
+             door="type:translate;
+                   trigger:voice;
+                   openCommand:seven;
+                   closeCommand:close front door;
+                   openPos:8.8 18.1 -6.72;
+                   closePos:8.8 15.6 -6.72;
+                   threshold:4"
+                   static-body>
+        <a-box id="door-sign-1"
+               scale="1 1 0.2"
+               src="https://cdn.glitch.com/46a82737-5997-41dc-96e6-2074eba7fa69%2F5plus2.png?1510657428064"
+               position="0 0.439 0.138">
+        </a-box>
+      </a-box>
+      <a-box id="door-2"
+             depth="1.6" height="2.4" width="0.4"
+             color="#334433"
+             position="13.8 15.6 -12"
+             rotation="0 180 0"
+             door="type:translate;
+                   trigger:voice;
+                   openCommand:thirty;
+                   closeCommand:close elevator door;
+                   openPos:13.8 13.1 -12;
+                   closePos:13.8 15.6 -12;
+                   threshold:4"
+                   static-body>
+        <a-box id="door-sign-2"
+               scale="0.2 1 1"
+               src="https://cdn.glitch.com/46a82737-5997-41dc-96e6-2074eba7fa69%2F3Times8Plus6.png?1511175488532"
+               position="0.138 0.439 0">
+        </a-box>
+      </a-box>
+      <!-- Spot Lights -->
+      <a-entity id="spot-1"
+                light="type: spot; angle: 60; castShadow:true; color:#ffffff; intensity:0.6"        
+                position="6.98 16.26 -8.85"
+                rotation="-20 20 0">
+        <a-sphere radius="0.25" 
+                  color="red"
+                  opacity="0"
+                  shadow="cast: false;">
+        </a-sphere>
+      </a-entity>
+      <a-entity id="spot-2"
+                light="type: spot; angle: 60; castShadow:true; color:#ffffff; intensity:0.6"        
+                position="12.66 16.26 -8.85"
+                rotation="-20 20 0">
+        <a-sphere radius="0.25" 
+                  color="red"
+                  opacity="0"
+                  shadow="cast: false;">
+        </a-sphere>
+      </a-entity>
+      <a-entity id="spot-3"
+                light="type: spot; angle: 60; castShadow:true; color:#ffffff; intensity:0.6"        
+                position="13.35 15.86 -12.6"
+                rotation="-20 -83.4 0">
+        <a-sphere radius="0.25" 
+                  color="red"
+                  opacity="0"
+                  shadow="cast: false;">
+        </a-sphere>
+      </a-entity>
+      <!-- Default lighting injected by A-Frame. -->
+      <a-entity light="type: ambient; color: #BBB; intensity: 0.8"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.4" position="-0.5 1 1"></a-entity>
+      <!-- Follow-up Message -->
+      <a-box id="follow-up-message"
+              scale="1 1 0.2"
+              src="https://cdn.glitch.com/46a82737-5997-41dc-96e6-2074eba7fa69%2FyouveDoneWell.png?1510657619550"
+              position="6.98 16 -14.48">
+      </a-box>
+      <!-- Ground -->
+      <a-grid material="opacity:0" static-body></a-grid>
+    </a-scene>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous">
+    </script>
+    <script src="map.js"></script>
+  </body>
+</html>
